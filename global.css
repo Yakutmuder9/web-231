@@ -34,3 +34,20 @@ a:hover {
 a:visited {
     color: #3C275A;
 }
+
+/* ---Week 2.2 assignment style started here */
+.return-home {
+    color: #4F3674;
+    text-decoration: none;
+}
+
+
+.return-home:hover {
+    background-color: #D6A800;
+    color: #4F3674;
+}
+
+/* pseudo visited style to return btn */
+.return-home:visited {
+    color: #3C275A;
+}
