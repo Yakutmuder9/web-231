@@ -1,0 +1,16 @@
+/*
+============================================
+; Title:  Assignment 2.2 
+; Author: Professor Krasso
+; Date:   25 June 2017
+; Description: style ahmedin-payroll page
+;===========================================
+*/
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    border: 1px dotted red;
+}

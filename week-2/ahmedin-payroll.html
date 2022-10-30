@@ -1,0 +1,120 @@
+<!--
+============================================
+; Title:  Assignment 2.2 – Values and Variables
+; Author: Professor Krasso
+; Date:   29 October 2022
+; Modified By: Yakut Ahmedin
+; Description: Assignment 2.2 – Values and Variables – Hello JavaScript.
+;===========================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WEB 231 - Enterprise JavaScript I</title>
+
+    <!-- CSS styels -->
+    <link rel="stylesheet" type="text/css" href="../site.css">
+    <link rel="stylesheet" type="text/css" href="../global.css">
+    <link rel="stylesheet" type="text/css" href="./ahmedin-payroll.css">
+
+    <!-- Google fonts for Oswald -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="container">
+        <!-- page title -->
+        <h1 id="payroll-header ">Payroll System</h1>
+
+        <!--First Employe record lists -->
+        <h3>Employee record 1</h3>
+
+        <ul class="first-employee-record">
+            <li id="txtFirstNameLudgwig"></li>
+            <li id="txtLastNameBeethoven"></li>
+            <li id="txtAddressLudgwig"></li>
+            <li id="txtHireDateLudwig"></li>
+            <li id="txtPayRateLudwig"></li>
+        </ul>
+
+        <!--Second Employe record lists -->
+        <h3>Employee record 2</h3>
+
+        <ul class="second-employee-record">
+            <li id="txtFirstNameJohann"></li>
+            <li id="txtLastNameBeach"></li>
+            <li id="txtAddressJohann"></li>
+            <li id="txtHireDateJohann"></li>
+            <li id="txtPayRateJohann"></li>
+        </ul>
+
+        <!--Third Employe record lists -->
+        <h3>Employee record 3</h3>
+
+        <ul class="third-employee-record">
+            <li id="txtFirstNameWolfgang"></li>
+            <li id="txtLastNameMozart"></li>
+            <li id="txtAddressWolfgang"></li>
+            <li id="txtHireDateWolfgang"></li>
+            <li id="txtPayRateWolfgang"></li>
+        </ul>
+
+
+
+        <!-- Return back to home page -->
+        <a href="#container" class="return-home">Return</a>
+
+    </div>
+
+    <!-- Script start here -->
+    <script>
+
+        // declaring a varibles names for first employee
+        const firstName_R1 = 'Ludgwig'
+        const lastName_R1 = 'Beethoven'
+        const address_R1 = '505 main street'
+        const hireDate_R1 = new Date().toLocaleDateString('en-US')
+        const payRate_R1 = (18.9).toFixed(1)
+        
+        // getting record list item by id for first employee
+        document.getElementById("txtFirstNameLudgwig").innerHTML = firstName_R1;
+        document.getElementById("txtLastNameBeethoven").innerHTML = lastName_R1;
+        document.getElementById("txtAddressLudgwig").innerHTML = address_R1;
+        document.getElementById("txtHireDateLudwig").innerHTML = hireDate_R1;
+        document.getElementById("txtPayRateLudwig").innerHTML = payRate_R1;
+     
+        // declaring a varibles names for second employee
+        const firstName_R2 = 'Johann'
+        const lastName_R2 = 'Beach'
+        const address_R2 = '512 main street'
+        const hireDate_R2 = new Date().toLocaleDateString('en-US')
+        const payRate_R2 = (25.5).toFixed(1)
+        
+        // getting record list item by id for second employee
+        document.getElementById("txtFirstNameJohann").innerHTML = firstName_R2;
+        document.getElementById("txtLastNameBeach").innerHTML = lastName_R2;
+        document.getElementById("txtAddressJohann").innerHTML = address_R2;
+        document.getElementById("txtHireDateJohann").innerHTML = hireDate_R2;
+        document.getElementById("txtPayRateJohann").innerHTML = payRate_R2;
+    
+        // declaring a varibles names for third employee
+        const firstName_R3 = 'Wolfgang'
+        const lastName_R3 = 'Mozart'
+        const address_R3 = '600 main street'
+        const hireDate_R3 = new Date().toLocaleDateString('en-US')
+        const payRate_R3 = (50.1).toFixed(1)
+        
+        // getting record list item by id for third employee
+        document.getElementById("txtFirstNameWolfgang").innerHTML = firstName_R3;
+        document.getElementById("txtLastNameMozart").innerHTML = lastName_R3;
+        document.getElementById("txtAddressWolfgang").innerHTML = address_R3;
+        document.getElementById("txtHireDateWolfgang").innerHTML = hireDate_R3;
+        document.getElementById("txtPayRateWolfgang").innerHTML = payRate_R3;
+
+
+    </script>
+</body>
+
+</html>
