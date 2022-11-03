@@ -1,0 +1,89 @@
+<!--
+============================================
+; Title:  Assignment 3 – Temperature Conversion App
+; Author: Professor Krasso
+; Date:   03 November 2022
+; Modified By: Yakut Ahmedin
+; Description: Assignment 3 – Temperature Conversion App 
+            Weekly Assignments 3 word document!!
+            Fahrenheit to Celsuis Converter!!
+;===========================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WEB 231 - Enterprise JavaScript I</title>
+
+    <!-- CSS styel -->
+    <link rel="stylesheet" type="text/css" href="./ahmedin-temp-conversion.css">
+
+    <!-- Google fonts for Oswald -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="container">
+        <!-- page title -->
+        <h1 class="app-header">Welcome to the Temperature Conversion App!</h1>
+
+        <!-- open alert modal when a button is clicked.-->
+        <div class="card">
+            <div class="card-title">
+                Fahrenheit to Celsius Converter
+            </div>
+
+            <!--  fahrenheit value insertion form -->
+            <div class="card-content">
+                <div class="form">
+                    <div class="form-field">
+                        <label for="txtFahrenheit">Fahrenheit value:</label>
+                        <input type="number" id="txtFahrenheit" class="input" name="txtFahrenheit" />
+                    </div>
+                    <div class="form-field">
+                        <button type="submit" class="btn btn-primary full-width" id="formSubmitBtn">Convert
+                            Temperature</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Converted value show up card -->
+        <div class="card">
+            <div class="card-title">
+                Conversion Results
+            </div>
+            <br />
+
+            <!-- changed value -->
+            <div class="card-content" id="convertedValue">
+
+            </div>
+        </div>
+
+        <footer>
+            <!-- return to home page -->
+            <a href="#container">Return</a>
+        </footer>
+    </div>
+
+    <script>
+
+        // lets get input value with id 
+        let fahrenheit = document.getElementById("txtFahrenheit")
+
+        // change the input value funtion
+        document.getElementById('formSubmitBtn').addEventListener("click", function () {
+
+            // let assign varible and change the input value to celisus  also round in to two decimal places.
+            let tempValue = ((parseFloat(fahrenheit.value) - 32) / 1.8).toFixed(2)
+
+            // get the changed value from tempValue and set it on to conversion field
+            document.getElementById("convertedValue").innerHTML = tempValue;
+        });
+    </script>
+
+</body>
+
+</html>
