@@ -17,7 +17,7 @@
     <title>WEB 231 - Enterprise JavaScript I</title>
 
     <!-- CSS styel -->
-    <link rel="stylesheet" type="text/css" href="./ahmedin-temp-conversion.css">
+    <link rel="stylesheet" type="text/css" href="./ahmedin-number-game.css">
 
     <!-- Google fonts for Oswald -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -26,24 +26,24 @@
 <body>
     <div id="container">
         <!-- page title -->
-        <h1 class="app-header">Welcome to the Temperature Conversion App!</h1>
+        <h1 class="app-header">Welcome to the numbers game!</h1>
 
         <!-- open alert modal when a button is clicked.-->
         <div class="card">
             <div class="card-title">
-                Fahrenheit to Celsius Converter
+                Pick a number between 1 and 10
             </div>
 
             <!--  fahrenheit value insertion form -->
             <div class="card-content">
                 <div class="form">
                     <div class="form-field">
-                        <label for="txtFahrenheit">Fahrenheit value:</label>
-                        <input type="number"  id="txtFahrenheit" class="input" name="txtFahrenheit" />
+                        <label for="txtMyNumber">Guess the number:</label>
+                        <input type="number" id="txtMyNumber" class="input" name="txtMyNumber" />
                     </div>
                     <div class="form-field">
-                        <button type="submit" class="btn btn-primary full-width" id="formSubmitBtn" >Convert
-                            Temperature</button>
+                        <button type="submit" class="btn btn-primary full-width" id="formSubmitBtn"
+                            onclick="btnSubmit()">Submit</button>
                     </div>
                 </div>
             </div>
@@ -52,42 +52,46 @@
         <!-- Converted value show up card -->
         <div class="card">
             <div class="card-title">
-                Conversion Results
+                Results
             </div>
             <br />
 
             <!-- changed value -->
-            <div class="card-content" id="convertedValue">
+            <div class="card-content" id="reseltMessage">
 
             </div>
         </div>
 
         <footer>
             <!-- return to home page -->
-            <a href="https://yakutmuder9.github.io/web-231/week-3/ahmedin-temp-conversion">Return</a>
+            <a href="https://yakutmuder9.github.io/web-231/week-4/ahmedin-number-game">Return</a>
         </footer>
     </div>
 
     <script>
 
         // lets get input value with id 
-        let fahrenheit = document.getElementById("txtFahrenheit")
-         
-        // change the input value funtion
-       addEventListener("click", function () {
-
-        if (fahrenheit.value.lenght > 0){
-            // here we assign varible and change the input value to celisus  also round in to two decimal places.
-            let tempValue = ((parseFloat(fahrenheit.value) - 32) / 1.8).toFixed(2)  
-
-            // get the changed value from tempValue and set it on to conversion field
-            document.getElementById("convertedValue").innerHTML = tempValue;
+        let myNumber = document.getElementById("txtMyNumber")
+        let reseltMessage = document.getElementById("reseltMessage")
+    
+        // generate random number between 1 and 10
+        const rnd = Math.floor((Math.random() * 10) + 1)
+        
+        // 
+        function btnSubmit() {
+            // check the condition if the value of in put match with random number  
+            if (myNumber.value > rnd) {
+                reseltMessage.innerHTML= (`The number is less than ${myNumber.value}`)
+            }
+            else if(myNumber.value < rnd)
+            {
+                reseltMessage.innerHTML=(`The number is greater than  ${myNumber.value}`)
+            }
+            else {
+                reseltMessage.innerHTML= ("Congratulations! You picked the correct number!")
+            }
         }
 
-        console.log("No value")
-        
-           
-        });
     </script>
 
 </body>
