@@ -1,12 +1,12 @@
 /*
 ============================================
-; Title:  Assignment 4 – Number Guessing Game App
+; Title:  Assignment 5 – Sequence Game
 ; Author: Professor Krasso
-; Date:   13 November 2022
+; Date:   20 November 2022
 ; Modified By: Yakut Ahmedin
-; Description: The following program contains the source code for a Number Guessing Game App. For the player put randome number from 1 up to 10 to guss the number. It checks if the number macth the hidden number. 
-            Weekly Assignments 4 word document!!
-            Number Guessing Game!!
+; Description: The following program contains the source code for a Sequence Game. For the player put randome number from 1 up to 10 to guss the number. It checks if the number macth the hidden number. 
+            Assignment 5 – Sequence Game!!
+            Sequence Game!!
 ;===========================================
 */
 
@@ -108,7 +108,7 @@ footer a:visited {
     color: #3C275A;
 }
 /* result text-styles */
-#reseltMessage{
+#fibonacciSequenceText{
     text-align: center;
     font-size: 28px;
 }
