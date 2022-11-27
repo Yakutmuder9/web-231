@@ -1,0 +1,202 @@
+<!--
+============================================
+; Title:  Assignment 6 – In-N-Out-Books
+; Author: Professor Krasso
+; Date:   27 November 2022
+; Modified By: Yakut Ahmedin
+; Description: The following program contains the source code for a In-N-Out-Books. 
+            Assignment 6 – In-N-Out-Books!!
+            In-N-Out-Books!!
+;===========================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WEB 231 - Enterprise JavaScript I</title>
+
+    <!-- CSS styel -->
+    <link rel="stylesheet" type="text/css" href="./ahmedin-in-n-out-books.css">
+
+    <!-- Google fonts for Oswald -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="container">
+        <!-- page title -->
+        <h1 class="app-header">Welcome to In-N-Out-Books!</h1>
+
+        <!-- open alert modal when a button is clicked.-->
+        <div class="card">
+            <div class="card-title">
+                My Favorites
+            </div>
+
+            <!--  value insertion form -->
+            <div class="card-content">
+                <div class="form">
+                    <div class="form-field">
+                        <label for="choice">Choose a listing:</label>
+
+                        <!-- Select  dropdown field-->
+                        <select name="choice" id="choice" class="drop-down-menu input">
+                            <option value="select">--Select--</option>
+                            <option value="books">Top 3 Favorite Books</option>
+                            <option value="authors">Top 3 Favorite Authors</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <button type="submit" class="btn btn-primary full-width" id="btnDisplayListing"
+                            onclick="btnDisplayListing()">Display Listing</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <!-- return to home page -->
+            <a href="https://yakutmuder9.github.io/web-231">Return</a>
+        </footer>
+
+        <!-- Top 3 Favorites Books value show up card -->
+        <div class="card" id="favorite-books">
+            <div class="card-title">
+                Top 3 Favorites Books
+            </div>
+            <br />
+
+            <!-- results value -->
+            <div class="card-content">
+                <table id="books">
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Title</th>
+                        <th>Pages</th>
+                    </tr>
+                    <tr>
+                        <td id="txtTheBookOfStrangersISBN"></td>
+                        <td id="txtTheBookOfStrangersTitle"></td>
+                        <td id="txtTheBookOfStrangersPages"></td>
+                    </tr>
+                    <td id="txtTheGodEquationISBN"></td>
+                    <td id="txtTheGodEquationTitle"></td>
+                    <td id="txtTheGodEquationPages"></td>
+                    </tr>
+                    <tr>
+                        <td id="txtAlMuattaOfImamMalikISBN"></td>
+                        <td id="txtAlMuattaOfImamMalikTilte"></td>
+                        <td id="txtAlMuattaOfImamMalikPages"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Top 3 Favorites Books value show up card -->
+        <div class="card" id="favorite-authors">
+            <div class="card-title">
+                Top 3 Favorites Authors
+            </div>
+            <br />
+
+            <!-- results value -->
+            <div class="card-content">
+                <table id="authors">
+                    <tr>
+                        <th>Name</th>
+                        <th>Genre</th>
+                    </tr>
+                    <tr>
+                        <td id="txtAbdalqadirAsSufiName"></td>
+                        <td id="txtAbdalqadirAsSufiGenre"></td>
+                    </tr>
+                    <td id="txtMichioKakuName"></td>
+                    <td id="txtMichioKakuGenre"></td>
+                    </tr>
+                    <tr>
+                        <td id="txtAlMuwattaName"></td>
+                        <td id="txtAlMuwattaGenre"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+
+        // lets assign varibale for favorite books 
+        const TheBookOfStranger = { isbn: "4322134556", title: "The Book of Strangers.", pages: "654" }
+        const TheGodEquation = { isbn: "2341233545", title: "The Way of Muhammad.", pages: "1224" }
+        const AlMuattaOfImamMalik = { isbn: "1239383563", title: "Al-Muwatta of Imam Malik.", pages: "600" }
+
+        // assign variable to the authors
+        const txtAbdalqadirAsSufi = { name: "Abdalqadir as-Sufi", genre: "Fiction" }
+        const txtMichioKaku = { name: "Michio Kaku", genre: "Popular science" }
+        const txtAlMuwatta = { name: "Al Muwatta", genre: "Hadith collection" }
+
+        // get favorite books list get it by its id  
+        let books = document.getElementById("favorite-books");
+
+        // get favorite author list get it by its id
+        let authors = document.getElementById("favorite-authors");
+
+        // hidde all favorite books and authors table at the start
+        books.style.display = "none";
+        authors.style.display = "none";
+
+        const choice = document.getElementById("choice");
+
+        // generate choice number  
+        function btnDisplayListing() {
+
+            // check the condition if the value of in put match with choice number  
+            if (choice.value === "books") {
+                books.style.display = "block"
+                authors.style.display = "none"
+
+                // Set Book Of Strangers html value
+                document.getElementById('txtTheBookOfStrangersISBN').innerHTML = TheBookOfStranger.isbn
+                document.getElementById('txtTheBookOfStrangersTitle').innerHTML = TheBookOfStranger.title
+                document.getElementById('txtTheBookOfStrangersPages').innerHTML = TheBookOfStranger.pages
+
+                // Set The God Equation html value
+                document.getElementById('txtTheGodEquationISBN').innerHTML = TheGodEquation.isbn
+                document.getElementById('txtTheGodEquationTitle').innerHTML = TheGodEquation.title
+                document.getElementById('txtTheGodEquationPages').innerHTML = TheGodEquation.pages
+
+                // Set Al Muatta of Immam Malik html value
+                document.getElementById('txtAlMuattaOfImamMalikISBN').innerHTML = AlMuattaOfImamMalik.isbn
+                document.getElementById('txtAlMuattaOfImamMalikTilte').innerHTML = AlMuattaOfImamMalik.title
+                document.getElementById('txtAlMuattaOfImamMalikPages').innerHTML = AlMuattaOfImamMalik.pages
+            }
+            else if (choice.value === "authors") {
+                books.style.display = "none";
+                authors.style.display = "block";
+
+                // Set Abdalqadri As Sufui html value
+                document.getElementById('txtAbdalqadirAsSufiName').innerHTML = txtAbdalqadirAsSufi.name
+                document.getElementById('txtAbdalqadirAsSufiGenre').innerHTML = txtAbdalqadirAsSufi.genre
+                
+                // Set Michio Kaku html value
+                document.getElementById('txtMichioKakuName').innerHTML = txtMichioKaku.name
+                document.getElementById('txtMichioKakuGenre').innerHTML = txtMichioKaku.genre
+
+                // Set Al Muwatta  html value
+                document.getElementById('txtAlMuwattaName').innerHTML = txtAlMuwatta.name
+                document.getElementById('txtAlMuwattaGenre').innerHTML = txtAlMuwatta.genre
+
+            }
+            else {
+                books.style.display = "none";
+                authors.style.display = "none";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
