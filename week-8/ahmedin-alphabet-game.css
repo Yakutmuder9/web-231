@@ -1,13 +1,13 @@
 /*
 ============================================
-; Title:  Assignment 7 – Javazon
+; Title:  Assignment 8 – alphabet-game
 ; Author: Professor Krasso
-; Date:   02 December 2022
+; Date:   11 December 2022
 ; Modified By: Yakut Ahmedin
-; Description: The following program contains the source code for a Assignment 7 – Javazon. 
-            Assignment 7 – Javazon!!
-            javazon!!
-;===========================================
+; Description: The following program contains the source code for a Assignment 8 – alphabet-game. 
+            Assignment 8 – alphabet-game!!
+            alphabet-game!!
+;============================================
 */
 
 body {
@@ -113,34 +113,9 @@ footer a:visited {
     font-size: 28px;
 }
 
-
-/* Book table styles--- */
-table{
-    border-collapse: collapse;
-    width: 100%;
-    font-weight: 500;
-    margin-bottom: 30px;
-}
-
-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4F3674;
-    color: white;
-}
-
-table td, table th{
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 8px;
-    font-size: 14px;
-}
-
-table tr:hover{
-    background-color: #D6A800;
-    color: #4F3674;
-    cursor: pointer;
+#alphabetLetters, #alphabetOutput{
+    text-align: center;
+    font-size: 24px;
 }
 
 /* media to input card element */
