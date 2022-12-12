@@ -58,7 +58,6 @@
 
             <!-- changed value -->
             <div class="card-content" id="convertedValue">
-
             </div>
         </div>
 
@@ -76,15 +75,13 @@
         // change the input value funtion
        addEventListener("click", function () {
 
-        if (fahrenheit.value.lenght > 0){
+        if (fahrenheit.value.length > 0){
             // here we assign varible and change the input value to celisus  also round in to two decimal places.
             let tempValue = ((parseFloat(fahrenheit.value) - 32) / 1.8).toFixed(2)  
 
             // get the changed value from tempValue and set it on to conversion field
             document.getElementById("convertedValue").innerHTML = tempValue;
         }
-
-        console.log("No value")
         
            
         });
