@@ -2,10 +2,10 @@
 ============================================
 ; Title:  Assignment 9 – card-game
 ; Author: Professor Krasso
-; Date:   11 December 2022
+; Date:   13 December 2022
 ; Modified By: Yakut Ahmedin
-; Description: The following program contains the source code for a Assignment 8 – card-game. 
-            Assignment 8 – card-game!!
+; Description: The following program contains the source code for a Assignment 9  card-game. 
+            Assignment 9 – card-game!!
             card-game!!
 ;===========================================
 -->
@@ -21,33 +21,27 @@
 
     <!-- Google fonts for Oswald -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Materiral ui icons cdn link -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0" />
 </head>
 
 <body>
     <div id="container">
         <!-- page title -->
-        <h1 class="app-header">Welcome to the Alphabet Game!</h1>
+        <h1 class="app-header">Welcome to the Card Game!</h1>
 
         <!-- open alert modal when a button is clicked.-->
         <div class="card">
             <div class="card-title">
-                Alphabet Number Form
+                Card Dealer
             </div>
 
             <!--  value insertion form -->
             <div class="card-content">
-                <div class="form">
-                    <div class="form-field">
-                        <label for="txtPosition">Alphabet Letter Position </label>
-
-                        <!-- input num field-->
-                        <input name="txtPosition" id="txtPosition" class="drop-down-menu input"  type="number"/>
-                    </div>
-                    <div class="form-field">
-                        <button type="submit" class="btn btn-primary full-width" id="btnFindLetter "
-                            onclick="btnFindLetter()">Find Letter</button>
-                    </div>
-                </div>
+                <button id="btnDealCards" onclick="btnDealCards()" class="btn btn-primary full-width">Deal
+                    Cards</button>
             </div>
         </div>
 
@@ -59,67 +53,314 @@
         <!-- letter value show up card -->
         <div class="card" id="products">
             <div class="card-title">
-                Letters in the Alphabet.
+                Shuffled Cards
             </div>
             <br />
 
             <!-- results value -->
-            <div class="card-content" id="alphabetLetters">
- 
+            <div class="card-content" id="player-card-container">
+
+                <div class="card player-card" style="color:blue;font-size:46px;">
+                    <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:black;">
+                        5
+                    </div>
+                    <div class="card-content" style="font-size:28px;padding-bottom:28px;">
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                    </div>
+                </div>
+                <div class="card player-card" style="color:blue;font-size:46px;">
+                    <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:black;">
+                        5
+                    </div>
+                    <div class="card-content" style="font-size:28px;padding-bottom:28px;">
+                        <span class="material-symbols-outlined">search</span>
+                    </div>
+                </div>
+                <div class="card player-card" style="color:blue;font-size:46px;">
+                    <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:black;">
+                        5
+                    </div>
+                    <div class="card-content" style="font-size:28px;padding-bottom:28px;">
+                        <span class="material-symbols-outlined">search</span>
+                    </div>
+                </div>
+                <div class="card player-card" style="color:blue;font-size:46px;">
+                    <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:black;">
+                        5
+                    </div>
+                    <div class="card-content" style="font-size:28px;padding-bottom:28px;">
+                        <span class="material-symbols-outlined">search</span>
+                    </div>
+                </div>
+                <div class="card player-card" style="color:blue;font-size:46px;">
+                    <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:black;">
+                        5
+                    </div>
+                    <div class="card-content" style="font-size:28px;padding-bottom:28px;">
+                        <span class="material-symbols-outlined">search</span>
+                    </div>
+                </div>
+
             </div>
+
         </div>
-
-        <!-- letter value show up card -->
-        <div class="card" id="services">
-            <div class="card-title">
-                Results
-            </div>
-            <br />
-
-            <!-- results value -->
-            <div class="card-content" id="alphabetOutput">
-
-            </div>
-        </div>
-
-
-
-
-
     </div>
 
+
+
     <script>
-
-        // lets a character array of all the letters in English alphabet   
-        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-
-        // lets create a new alphabet letter
-        const alphabetOutput = []
-        document.getElementById('alphabetLetters').innerHTML = alphabet
-        
-        // for... in
-        for (let letter in alphabet) {
-            alphabetOutput.push(alphabet[letter]);
-        }
-
-        
-        // generate letter with index 
-        function btnFindLetter() {
-            const pos = document.getElementById('txtPosition').value
-            const letter = alphabetOutput[pos-1]
-
-            // check the condition if the value of in put match with the index number of the alphabet  
-            if (!letter) {
-             document.getElementById('alphabetOutput').innerHTML = `There are not ${pos} letters in the alphabet`
+        // lets create a Card class with a constructor with parameters for face and suit. 
+        class Card {
+            constructor(face, suit) {
+                this.face = face;
+                this.suit = suit;
             }
-            else {
-             document.getElementById('alphabetOutput').innerHTML = `${letter} is at position ${pos} in the alphabet`
+        }
+        // Create a Dealer class without constructor 
+        class Dealer {
+            constructor() {
+
             }
         }
 
-       
+        let CARD_COUNT = 52;
+
+        // empty array to contain cards
+        let cards = [];
+
+        // Create a variable named faces and assign it an array 
+        let faces = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+        let suits = ["Heart", "Diamonds", "Clubs", "Spades"];
+
+        // create a cards of cards
+        const getCardsOfCards = () => {
+            // for loop with 52 iterations 
+            for (let i = 0; i < suits.length; i++) {
+                for (let x = 0; x < CARD_COUNT; x++) {
+                    let card = { face: faces[x], suit: suits[i] };
+                    cards.push(card);
+                }
+            }
+            return cards
+        }
+
+        // Call the getCardsOfCards function 
+        getCardsOfCards()
+
+        const shuffle = () => {
+            // shuffle the cards
+            // for (let i = 0; i < CARD_COUNT; i++) {
+            //     let firstCard = Math.floor(Math.random() * CARD_COUNT);
+            //     let secondCard = Math.floor(Math.random() * CARD_COUNT);
+            //     let tempCard = cards[firstCard];
+            //     cards[firstCard] = cards[secondCard];
+            //     cards[secondCard] = tempCard;
+            // }
+
+            // for (let i = cards.length - 1; i > 0; i--) {
+            //     let j = Math.floor(Math.random() * i);
+            //     let tempCard = cards[i];
+            //     cards[i] = cards[j];
+            //     cards[j] = tempCard;
+            // }
+
+            
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                const tempCard = cards[i];
+                cards[i] = cards[j];
+                cards[j] = tempCard;
+            return cards;
+        }
+        shuffle();
+
+        const buildPlayingCard = (card, suitIcon, faceColor, suitColor) => {
+            return
+
+            `<div class="card player-card" style="color:blue;font-size:46px;">
+
+                <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:${faceColor};">
+                    ${card.face}
+                </div>
+
+                <div class="card-content" style=""font-size:28px;padding-bottom:28px;">
+                    <span class="${suitIcon}"} style="color: ${suitColor}"}></span>
+                </div>
+
+            </div>`
+        }
+
+        const btnDealCards = () => {
+            console.log("cli")
+        }
+
+        // display 5 results
+        for (let i = 0; i < 4; i++) {
+            console.log(`${cards[i].face} of ${cards[i].suit}`)
+        }
+
+
+        for (const iterator of cards) {
+            switch (cards.suit) {
+                case 'Hearts':
+                    cardOutputWithIcon += buildPlayingCard(card, "di mdi-heart", "red", "red");
+                    break;
+
+                case 'Diamonds':
+                    cardOutputWithIcon += buildPlayingCard(card, "mdi  mdi-cards-diamonds", "red", "red");
+                    break;
+
+                case 'Clubs':
+                    cardOutputWithIcon += buildPlayingCard(card, "mdi mid-cards-club", "black", "black");
+                    break;
+
+                case 'Spades':
+                    cardOutputWithIcon += buildPlayingCard(card, "mdi mid-card-spade", "black", "black");
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
     </script>
+    <!-- <script>
+
+        // lets create a Card class with a constructor with parameters for face and suit. 
+        class Card {
+            constructor(face, suit) {
+                this.face = face;
+                this.suit = suit;
+            }
+        }
+        // Create a Dealer class without constructor 
+        class Dealer {
+            constructor() {
+
+            }
+        }
+
+        let CARD_COUNT = 52;
+        let cards = [];
+
+        // Create a variable named faces and assign it an array 
+        let faces = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+        let suits = ["Heart", "Diamonds", "Clubs", "Spades"];
+
+        const getCardsOfCards = () => {
+            // for loop with 52 iterations 
+            for (let count = 0; count < this.CARD_COUNT; count++) {
+                for (let x = 0; x < faces.length; x++) {
+                    let card = { face: faces[x], suit: suits[count] };
+                    cards.push(card);
+                }
+            }
+            return cards
+        }
+        console.log(cards);
+
+            // Call the getCardsOfCards function 
+            getCardsOfCards()
+
+            const shuffle = () => {
+                // for loop with 52 iterations 
+                for (let i = 0; i < CARD_COUNT; i++) {
+                    let firstCard = Math.floor(Math.random() * this.CARD_COUNT)
+                    let secondCard = Math.floor(Math.random() * this.CARD_COUNT)
+                    let tempCard = this.cards[firstCard];
+                    console.log("test")
+                    cards[firstCard] = cards[secondCard];
+                    cards[secondCard] = tempCard;
+                }
+            }
+
+            const buildPlayingCard = (card, suitIcon, faceColor, suitColor) => {
+                return
+
+                `<div class="card player-card" style="color:blue;font-size:46px;">
+
+                <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:${faceColor};">
+                    ${card.face}
+                </div>
+
+                <div class="card-content" style=""font-size:28px;padding-bottom:28px;">
+                    <span class="${suitIcon}"} style="color: ${suitColor}"}></span>
+                </div>
+
+            </div>`
+            }
+
+            const btnDealCards = () => {
+                console.log("cli")
+            }
+
+            let cards = new Dealer();
+            // shuffle()
+
+            let cardOutputWithIcon = ''
+
+            for (const iterator of cards) {
+                switch (cards.suit) {
+                    case 'Hearts':
+                        cardOutputWithIcon += buildPlayingCard(card, "di mdi-heart", "red", "red");
+                        break;
+
+                    case 'Diamonds':
+                        cardOutputWithIcon += buildPlayingCard(card, "mdi  mdi-cards-diamonds", "red", "red");
+                        break;
+
+                    case 'Clubs':
+                        cardOutputWithIcon += buildPlayingCard(card, "mdi mid-cards-club", "black", "black");
+                        break;
+
+                    case 'Spades':
+                        cardOutputWithIcon += buildPlayingCard(card, "mdi mid-card-spade", "black", "black");
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+        // cardOutputWithIcon
+
+        // var card = document.createElement("div");
+        // var icon = '';
+        // card.innerHTML = cards[i].Value + '' + icon;
+        // card.className = 'card';
+        // document.getElementById("cards").appendChild(card);
+
+
+
+
+
+     // create a cards of cards
+for (let i = 0; i < suits.length; i++) {
+    for (let x = 0; x < faces.length; x++) {
+        let card = { Value: faces[x], Suit: suits[i] };
+        cards.push(card);
+    }
+}
+
+// shuffle the cards
+for (let i = cards.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * i);
+    let temp = cards[i];
+    cards[i] = cards[j];
+    cards[j] = temp;
+}
+
+console.log('The first five cards are:');
+
+// display 5 results
+for (let i = 0; i < 5; i++) {
+    console.log(`${cards[i].face} of ${cards[i].suit}`)
+}
+
+
+    </script> -->
 
 </body>
 
