@@ -22,9 +22,11 @@
     <!-- Google fonts for Oswald -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Materiral ui icons cdn link -->
+    <!-- Materiral design icons cdn link -->
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0" />
+
 </head>
 
 <body>
@@ -51,64 +53,19 @@
         </footer>
 
         <!-- letter value show up card -->
-        <div class="card" id="products">
+        <div class="card" id="shuffledCar">
             <div class="card-title">
                 Shuffled Cards
             </div>
             <br />
 
-            <!-- results value -->
+            <!-- shuffle cards -->
             <div class="card-content" id="player-card-container">
-
-                <div class="card player-card" style="color:blue;font-size:46px;">
-                    <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:black;">
-                        5
-                    </div>
-                    <div class="card-content" style="font-size:28px;padding-bottom:28px;">
-                        <span class="material-symbols-outlined">
-                            favorite
-                        </span>
-                    </div>
-                </div>
-                <div class="card player-card" style="color:blue;font-size:46px;">
-                    <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:black;">
-                        5
-                    </div>
-                    <div class="card-content" style="font-size:28px;padding-bottom:28px;">
-                        <span class="material-symbols-outlined">search</span>
-                    </div>
-                </div>
-                <div class="card player-card" style="color:blue;font-size:46px;">
-                    <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:black;">
-                        5
-                    </div>
-                    <div class="card-content" style="font-size:28px;padding-bottom:28px;">
-                        <span class="material-symbols-outlined">search</span>
-                    </div>
-                </div>
-                <div class="card player-card" style="color:blue;font-size:46px;">
-                    <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:black;">
-                        5
-                    </div>
-                    <div class="card-content" style="font-size:28px;padding-bottom:28px;">
-                        <span class="material-symbols-outlined">search</span>
-                    </div>
-                </div>
-                <div class="card player-card" style="color:blue;font-size:46px;">
-                    <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:black;">
-                        5
-                    </div>
-                    <div class="card-content" style="font-size:28px;padding-bottom:28px;">
-                        <span class="material-symbols-outlined">search</span>
-                    </div>
-                </div>
-
+                
             </div>
 
         </div>
     </div>
-
-
 
     <script>
         // lets create a Card class with a constructor with parameters for face and suit. 
@@ -118,250 +75,114 @@
                 this.suit = suit;
             }
         }
+
         // Create a Dealer class without constructor 
         class Dealer {
-            constructor() {
+            CARD_COUNT = 52; // number of card
+            cards = [] // empty array to contain cards
 
-            }
-        }
+            // Create a variable named faces and assign it an array 
+            faces = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
-        let CARD_COUNT = 52;
+            suits = ["Hearts", "Diamonds", "Clubs", "Spades"]; // an array of suits
 
-        // empty array to contain cards
-        let cards = [];
-
-        // Create a variable named faces and assign it an array 
-        let faces = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-        let suits = ["Heart", "Diamonds", "Clubs", "Spades"];
-
-        // create a cards of cards
-        const getCardsOfCards = () => {
-            // for loop with 52 iterations 
-            for (let i = 0; i < suits.length; i++) {
-                for (let x = 0; x < CARD_COUNT; x++) {
-                    let card = { face: faces[x], suit: suits[i] };
-                    cards.push(card);
+            // create a cards of cards
+            getCardsOfCards = () => {
+                // for loop with 52 iterations 
+                for (let suit in this.suits) {
+                    for (let face in this.faces) {
+                        let card = { Face: this.faces[face], Suit: this.suits[suit] };
+                        this.cards.push(card);
+                    }
                 }
             }
-            return cards
+
+            constructor() {
+                this.getCardsOfCards();
+
+            }
         }
 
-        // Call the getCardsOfCards function 
-        getCardsOfCards()
+        //get access to dealer cards array
+        let dealer = new Dealer().cards;
 
+        // randomly shuffle the deck
         const shuffle = () => {
             // shuffle the cards
-            // for (let i = 0; i < CARD_COUNT; i++) {
-            //     let firstCard = Math.floor(Math.random() * CARD_COUNT);
-            //     let secondCard = Math.floor(Math.random() * CARD_COUNT);
-            //     let tempCard = cards[firstCard];
-            //     cards[firstCard] = cards[secondCard];
-            //     cards[secondCard] = tempCard;
-            // }
-
-            // for (let i = cards.length - 1; i > 0; i--) {
-            //     let j = Math.floor(Math.random() * i);
-            //     let tempCard = cards[i];
-            //     cards[i] = cards[j];
-            //     cards[j] = tempCard;
-            // }
-
-            
-            for (let i = cards.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                const tempCard = cards[i];
-                cards[i] = cards[j];
-                cards[j] = tempCard;
-            return cards;
+            for (let i = dealer.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * i);
+                let temp = dealer[i];
+                dealer[i] = dealer[j];
+                dealer[j] = temp;
+            }
         }
-        shuffle();
 
-        const buildPlayingCard = (card, suitIcon, faceColor, suitColor) => {
-            return
 
-            `<div class="card player-card" style="color:blue;font-size:46px;">
-
+        function buildPlayingCard(card, suitIcon, faceColor, suitColor) {
+            return `<div class="card player-card" >
                 <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:${faceColor};">
-                    ${card.face}
+                    ${card.Face}
                 </div>
-
-                <div class="card-content" style=""font-size:28px;padding-bottom:28px;">
-                    <span class="${suitIcon}"} style="color: ${suitColor}"}></span>
-                </div>
-
+                <div class="card-content" style="font-size:28px;padding-bottom:28px;">
+                        <span class="material-symbols-outlined" style="color: ${suitColor}"}>
+                            ${card.Suit}
+                        </span>
+                    </div>
             </div>`
         }
 
-        const btnDealCards = () => {
-            console.log("cli")
-        }
+        document.getElementById("btnDealCards").onclick = function () {
+            // call shuffle to randomize the card when butuun clicked
+            shuffle();
 
-        // display 5 results
-        for (let i = 0; i < 4; i++) {
-            console.log(`${cards[i].face} of ${cards[i].suit}`)
-        }
+            // assign new array to collect all the new card with new property
+            let cardOutputWithIcon = [];
 
-
-        for (const iterator of cards) {
-            switch (cards.suit) {
-                case 'Hearts':
-                    cardOutputWithIcon += buildPlayingCard(card, "di mdi-heart", "red", "red");
-                    break;
-
-                case 'Diamonds':
-                    cardOutputWithIcon += buildPlayingCard(card, "mdi  mdi-cards-diamonds", "red", "red");
-                    break;
-
-                case 'Clubs':
-                    cardOutputWithIcon += buildPlayingCard(card, "mdi mid-cards-club", "black", "black");
-                    break;
-
-                case 'Spades':
-                    cardOutputWithIcon += buildPlayingCard(card, "mdi mid-card-spade", "black", "black");
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-    </script>
-    <!-- <script>
-
-        // lets create a Card class with a constructor with parameters for face and suit. 
-        class Card {
-            constructor(face, suit) {
-                this.face = face;
-                this.suit = suit;
-            }
-        }
-        // Create a Dealer class without constructor 
-        class Dealer {
-            constructor() {
-
-            }
-        }
-
-        let CARD_COUNT = 52;
-        let cards = [];
-
-        // Create a variable named faces and assign it an array 
-        let faces = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-        let suits = ["Heart", "Diamonds", "Clubs", "Spades"];
-
-        const getCardsOfCards = () => {
-            // for loop with 52 iterations 
-            for (let count = 0; count < this.CARD_COUNT; count++) {
-                for (let x = 0; x < faces.length; x++) {
-                    let card = { face: faces[x], suit: suits[count] };
-                    cards.push(card);
-                }
-            }
-            return cards
-        }
-        console.log(cards);
-
-            // Call the getCardsOfCards function 
-            getCardsOfCards()
-
-            const shuffle = () => {
-                // for loop with 52 iterations 
-                for (let i = 0; i < CARD_COUNT; i++) {
-                    let firstCard = Math.floor(Math.random() * this.CARD_COUNT)
-                    let secondCard = Math.floor(Math.random() * this.CARD_COUNT)
-                    let tempCard = this.cards[firstCard];
-                    console.log("test")
-                    cards[firstCard] = cards[secondCard];
-                    cards[secondCard] = tempCard;
-                }
-            }
-
-            const buildPlayingCard = (card, suitIcon, faceColor, suitColor) => {
-                return
-
-                `<div class="card player-card" style="color:blue;font-size:46px;">
-
-                <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:${faceColor};">
-                    ${card.face}
-                </div>
-
-                <div class="card-content" style=""font-size:28px;padding-bottom:28px;">
-                    <span class="${suitIcon}"} style="color: ${suitColor}"}></span>
-                </div>
-
-            </div>`
-            }
-
-            const btnDealCards = () => {
-                console.log("cli")
-            }
-
-            let cards = new Dealer();
-            // shuffle()
-
-            let cardOutputWithIcon = ''
-
-            for (const iterator of cards) {
-                switch (cards.suit) {
+            // compare the suit against the string value and add property when condition match, then push to cardOutputWithIcon array
+            for (const card of dealer) {
+                switch (card.Suit) {
                     case 'Hearts':
-                        cardOutputWithIcon += buildPlayingCard(card, "di mdi-heart", "red", "red");
+                        cardOutputWithIcon.push([card.Face, "♥", "red", "red"]);
                         break;
 
                     case 'Diamonds':
-                        cardOutputWithIcon += buildPlayingCard(card, "mdi  mdi-cards-diamonds", "red", "red");
+                        cardOutputWithIcon.push([card.Face, "♦", "red", "red"]);
                         break;
 
                     case 'Clubs':
-                        cardOutputWithIcon += buildPlayingCard(card, "mdi mid-cards-club", "black", "black");
-                        break;
-
-                    case 'Spades':
-                        cardOutputWithIcon += buildPlayingCard(card, "mdi mid-card-spade", "black", "black");
+                        cardOutputWithIcon.push([card.Face, "♣", "black", "black"]);
                         break;
 
                     default:
+                        cardOutputWithIcon.push([card.Face, "♠", "black", "black"]);
                         break;
                 }
             }
 
-        // cardOutputWithIcon
+            // map cardOutputWithIcon array and create player-card card.
+            let listItems = cardOutputWithIcon.map(function (prop) {
+                // distructure the property getting from cardOutputWithIcon array
+                const [face, suitIcon, faceColor, suitColor] = prop
+                
+                return `<div class="card player-card" style="color:blue;font-size:46px;">
+                    <div class="card-title" style="text-align:left;font-size: 20px;padding-left: 10px;color:${faceColor};">
+                    ${face}
+                </div>
 
-        // var card = document.createElement("div");
-        // var icon = '';
-        // card.innerHTML = cards[i].Value + '' + icon;
-        // card.className = 'card';
-        // document.getElementById("cards").appendChild(card);
+                <div class="card-content" style="font-size:28px;padding-bottom:28px;">
+                        <span class="material-symbols-outlined" style="color: ${suitColor}"}>
+                            ${suitIcon} 
+                        </span>
+                    </div>
 
+                </div>`
+            })
+            
+            // get the player card and bind to the player-card-container div.
+            document.getElementById('player-card-container').innerHTML = listItems.join('');
+        }
 
-
-
-
-     // create a cards of cards
-for (let i = 0; i < suits.length; i++) {
-    for (let x = 0; x < faces.length; x++) {
-        let card = { Value: faces[x], Suit: suits[i] };
-        cards.push(card);
-    }
-}
-
-// shuffle the cards
-for (let i = cards.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * i);
-    let temp = cards[i];
-    cards[i] = cards[j];
-    cards[j] = temp;
-}
-
-console.log('The first five cards are:');
-
-// display 5 results
-for (let i = 0; i < 5; i++) {
-    console.log(`${cards[i].face} of ${cards[i].suit}`)
-}
-
-
-    </script> -->
-
+    </script>
 </body>
 
 </html>
