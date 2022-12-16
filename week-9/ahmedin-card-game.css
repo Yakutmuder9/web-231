@@ -143,8 +143,8 @@ footer a:visited {
     height: 120px;
     text-align: center;
 }
-.player-card .material-symbols-outlined {
-    scale: 1.5;
+.card-content span {
+    scale: 2.5;
 }
 /* media to input card element */
 @media(max-width: 992px) {
